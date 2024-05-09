@@ -9,7 +9,7 @@ except Exception as e:
 keys=""
 for key in cdm.get_keys(session_id):
     if key.type=="CONTENT":
-        keys+=f"{key.kid.hex}:{key.key.hex()}\n"
+        keys+=f"--key {key.kid.hex}:{key.key.hex()} \n"
 
 # close session, disposes of session data
 cdm.close(session_id)

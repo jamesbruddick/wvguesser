@@ -3,59 +3,74 @@
     <meta charset="UTF-8">
     <title>Widevine L3 Guessor 2024</title>
     <style>
-      .hidden{display:none}
-      html, body {
-        height: 100%;
-        width: 100%;
+      .hidden {
+        display: none;
+      }
+      .container {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        margin-bottom: 3px;
+      }
+      #toggleHistory {
+        margin-bottom: 8px;
+      }
+      #home {
+        width: 550px;
+      }
+      #psshList, #requestList {
+        word-wrap: break-word;
       }
     </style>
     <script src="pyodide/pyodide.js"></script>
   </head>
   <body>
     <div id="toggleHistory">
-      <button id="historyButton">Show History</button><br><br>
+      <button id="historyButton">Show History</button>
     </div>
     <div id="noEME">
-      Widevine content hasn't detected in this page.<br>
-      Open widevine-protected website and try again!
+      Widevine content hasn't detected in this page. Open widevine-protected website and try again!
     </div>
     <div id="home" class="hidden">
       <form id="wvForm">
-        <label for="pssh">PSSH</label>
-        <input type="text" id="pssh" disabled/>
-        <input type="hidden" id="psshIndex" />
-        <input type="button" id="psshButton" value="Select" /><br>
-
-        <label for="license">License URL</label>
-        <input type="text" id="license" disabled/>
-        <input type="hidden" id="licenseIndex" />
-        <input type="button" id="licenseButton" value="Select" /><br>
-
-        <label for="scheme">Challenge scheme</label>
-        <select id="scheme">
-          <option value="CommonWV">CommonWV</option>
-          <option value="Amazon">Amazon</option>
-          <option value="Comcast">Comcast Xfinity</option>
-          <option value="DRMToday">DRMToday</option>
-          <option value="GlobalTV">GlobalTV</option>
-          <option value="NosTV">NosTV</option>
-          <option value="Polsat">Polsat</option>
-          <option value="RedBee">Red Bee Media</option>
-          <option value="thePlatform">thePlatform</option>
-          <option value="Youku">Youku</option>
-        </select><br>
-
-        <input type="button" id="guess" value="Guess!"><br>
-
-        <label for="result">Result:</label><br>
-        <textarea id="result" rows="10" cols="50"></textarea>
-
+        <div class="container">
+          <label for="pssh">PSSH:</label>
+          <input type="text" id="pssh" style="flex: 1;" disabled>
+          <input type="hidden" id="psshIndex">
+          <input type="button" id="psshButton" value="Select">
+        </div>
+        <div class="container">
+          <label for="license">License URL:</label>
+          <input type="text" id="license" style="flex: 1;" disabled>
+          <input type="hidden" id="licenseIndex">
+          <input type="button" id="licenseButton" value="Select">
+        </div>
+        <div class="container">
+          <label for="scheme">Challenge Scheme:</label>
+          <select id="scheme">
+            <option value="CommonWV">CommonWV</option>
+            <option value="Amazon">Amazon</option>
+            <option value="Comcast">Comcast Xfinity</option>
+            <option value="DRMToday">DRMToday</option>
+            <option value="GlobalTV">GlobalTV</option>
+            <option value="NosTV">NosTV</option>
+            <option value="Polsat">Polsat</option>
+            <option value="RedBee">Red Bee Media</option>
+            <option value="thePlatform">thePlatform</option>
+            <option value="Youku">Youku</option>
+          </select>
+          <input type="button" id="guess" value="Guess!">
+        </div>
+        <div class="container">
+          <textarea id="result" rows="5" style="flex: 1;"></textarea>
+        </div>
       </form>
     </div>
     <div id="ckHome" class="hidden">
       <h3>Clearkey detected</h3>
-      <label for="ckResult">Result:</label><br>
-      <textarea id="ckResult" rows="10" cols="50"></textarea>
+      <div class="container">
+        <textarea id="ckResult" rows="5" style="flex: 1;"></textarea>
+      </div>
     </div>
     <div id="selectPssh" class="hidden">
       <input type="text" id="psshSearch" placeholder="Search">
