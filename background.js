@@ -63,6 +63,6 @@ chrome.browserAction.onClicked.addListener(function(tab) {
         url: "popup.html",
         type: "popup",
         width: 583,
-        height: 255
+        height: 265
     });
 });
